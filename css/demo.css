@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 #section2 {
+  overflow: hidden;
 }
 section {
   min-height: 100vh;
@@ -19,6 +20,7 @@ section {
   display: flex;
   flex-wrap: wrap;
   height: 100%;
+  overflow: hidden;
 }
 
 .reveal.active {
@@ -385,7 +387,7 @@ a:focus {
   background-position: 0 0;
 }
 
-@media screen and (max-width: 40em) {
+@media screen and (max-width: 60em) {
   .message {
     display: block;
   }
@@ -440,7 +442,9 @@ a:focus {
     flex-direction: column;
     align-items: center;
   }
-
+  .frame__title {
+    font-size: 3em;
+  }
   .about-me-image {
     margin: 0 auto 20px auto;
   }
