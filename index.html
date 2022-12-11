@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Martin Cucik</title>
+    <meta
+      name="description"
+      content="My personal portfolio website"
+    />
+    <meta
+      name="keywords"
+      content="portfolio, animation, piece, fragment, box, css, javascript, demo, effect, web dev"
+    />
+    <meta name="author" content="Martin Cucik" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Cormorant+Garamond"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/demo-entry.css" />
+
+    <script>
+      document.documentElement.className = "js";
+    </script>
+  </head>
+  <body class="demo-grid loading">
+  
+    <main id="section1">
+      <div class="frame">
+        <h4 class="frame__title">
+          Martin Cucik
+          <div>
+            <a href="index.html">
+              <img
+                src="https://e7.pngegg.com/pngimages/914/758/png-clipart-computer-icons-logo-github-github-logo-logo-computer-program-thumbnail.png"
+                style="height: 40px; width: 40px"
+            /></a>
+            </a>    <a href="https://www.freecodecamp.org/martincucik">
+            <img
+              src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/ikqra03zdnggljdu5vv0"
+              style="height: 40px; width: 40px"
+            /></a>
+          </div>
+        </h4>
+      </div>
+      <div class="content">
+        <nav class="page-nav">
+          <a class="page-nav__item" href="#">Web developer</a>
+          <a class="page-nav__item" href="#">HTML</a>
+          <a class="page-nav__item" href="#">CSS</a>
+          <a class="page-nav__item" href="#">Javascript</a>
+          <a class="page-nav__item" href="#">React</a>
+          <div style="display: flex; column-gap: 3rem;">
+          <a href="#section2" class="page-nav__item" href="#" style="text-decoration:  underline;">My work</a>
+          <a href="#section3" class="page-nav__item" href="#" style="text-decoration:  underline;">About me</a>
+        </div
+        ><a class="page-nav__item page-nav__item--close" href="#">Back</a>
+        </nav>
+        <div class="pieces" style="background-image: url(img/d.jpg)"></div>
+        <h2 class="content__title">Explore</h2>
+      </div>
+    </main>
+    <section id="section2">
+      <div class="container reveal">
+      <dvi>hehe</dvi>
+        
+        <ul class="cards">
+          <li class="cards_item">
+            <div class="card">
+              <div class="card_image"><img src="https://picsum.photos/500/300/?image=10"></div>
+              <div class="card_content">
+                <h2 class="card_title">React movie search app</h2>
+                <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+                <button class="btn card_btn">Read More</button>
+              </div>
+            </div>
+          </li>
+          <li class="cards_item">
+            <div class="card">
+              <div class="card_image"><img src="https://picsum.photos/500/300/?image=5"></div>
+              <div class="card_content">
+                <h2 class="card_title">Card Grid Layout</h2>
+                <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+                <button class="btn card_btn">Read More</button>
+              </div>
+            </div>
+          </li>
+       
+          <li class="cards_item">
+            <div class="card">
+              <div class="card_image"><img src="https://picsum.photos/500/300/?image=17"></div>
+              <div class="card_content">
+                <h2 class="card_title">Card Grid Layout</h2>
+                <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+                <button class="btn card_btn">Read More</button>
+              </div>
+            </div>
+          </li>
+          <li class="cards_item">
+            <div class="card">
+              <div class="card_image"><img src="https://picsum.photos/500/300/?image=2"></div>
+              <div class="card_content">
+                <h2 class="card_title">Card Grid Layout</h2>
+                <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+                <button class="btn card_btn">Read More</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      
+      
+      </div>
+    </section>
+    <section id="section3">
+</section>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/anime.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+
+        for (var i = 0; i < reveals.length; i++) {
+          var windowHeight = window.innerHeight;
+          var elementTop = reveals[i].getBoundingClientRect().top;
+          var elementVisible = 150;
+
+          if (elementTop < windowHeight - elementVisible) {
+            reveals[i].classList.add("active");
+          } else {
+            reveals[i].classList.remove("active");
+          }
+        }
+      }
+
+      window.addEventListener("scroll", reveal);
+
+      {
+        imagesLoaded(document.body, { background: true }, () =>
+          document.body.classList.remove("loading")
+        );
+
+        const piecesEl = document.querySelector(".content .pieces");
+        const piecesObj = new Pieces(piecesEl, {
+          pieces: { rows: 14, columns: 12 },
+        });
+        const menuEl = document.querySelector(".page-nav");
+        const optionsCtrl = document.querySelector(".content__title");
+        const closeOptionsCtrl = menuEl.querySelector(
+          "a.page-nav__item--close"
+        );
+
+        const showOptions = () => {
+          menuEl.classList.add("page-nav--open");
+
+          piecesObj.animate({
+            duration: 1500,
+            delay: (t, i) => {
+              const elBounds = piecesEl.getBoundingClientRect();
+              const x1 = elBounds.left + elBounds.width / 2;
+              const y1 = elBounds.top + elBounds.height / 2;
+              const tBounds = t.getBoundingClientRect();
+              const x2 = tBounds.left + tBounds.width / 2;
+              const y2 = tBounds.top + tBounds.height / 2;
+              const dist = Math.sqrt(
+                Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)
+              );
+              const maxDist = Math.sqrt(
+                Math.pow(elBounds.left - x1, 2) + Math.pow(elBounds.top - y1, 2)
+              );
+              const maxDelay = 300;
+
+              t.dataset.centerx = x2;
+              t.dataset.centery = y2;
+
+              return ((-1 * maxDelay) / maxDist) * dist + maxDelay;
+            },
+            easing: [0, 1, 0, 1],
+            translateX: (t, i) => {
+              return t.dataset.column < piecesObj.getTotalColumns() / 4
+                ? anime.random(-10, 0)
+                : anime.random(0, 10);
+            },
+            translateY: (t, i) => {
+              return t.dataset.row < piecesObj.getTotalRows() / 4
+                ? anime.random(-10, 0)
+                : anime.random(0, 10);
+            },
+            opacity: 0.2,
+          });
+
+          anime.remove(optionsCtrl);
+          anime({
+            targets: optionsCtrl,
+            duration: 700,
+            easing: "easeOutExpo",
+            scale: 1.2,
+            opacity: 0,
+          });
+          menuEl.style.zIndex = "999999";
+
+          anime.remove(menuEl);
+          anime({
+            targets: menuEl,
+            duration: 700,
+            delay: 150,
+            easing: "easeOutExpo",
+            scale: [0, 1],
+            opacity: 1,
+          });
+        };
+
+        const hideOptions = (ev) => {
+          ev.preventDefault();
+          menuEl.classList.remove("page-nav--open");
+
+          piecesObj.animate({
+            duration: 1500,
+            delay: (t, i) => {
+              const elBounds = piecesEl.getBoundingClientRect();
+              const x1 = elBounds.left + elBounds.width / 2;
+              const y1 = elBounds.top + elBounds.height / 2;
+              const x2 = t.dataset.centerx;
+              const y2 = t.dataset.centery;
+              const dist = Math.sqrt(
+                Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)
+              );
+              const maxDist = Math.sqrt(
+                Math.pow(elBounds.left - x1, 2) + Math.pow(elBounds.top - y1, 2)
+              );
+              const maxDelay = 800;
+
+              return (maxDelay / maxDist) * dist;
+            },
+            easing: [0.1, 1, 0, 1],
+            translateX: 0,
+            translateY: 0,
+            opacity: 1,
+          });
+
+          anime.remove(optionsCtrl);
+          anime({
+            targets: optionsCtrl,
+            duration: 700,
+            delay: 200,
+            easing: "easeOutQuint",
+            scale: [1.1, 1],
+            opacity: 1,
+          });
+
+          anime.remove(menuEl);
+          anime({
+            targets: menuEl,
+            duration: 700,
+            easing: "easeOutQuint",
+            scale: 0.8,
+            opacity: 0,
+          });
+          menuEl.style.zIndex = "0";
+        };
+
+        optionsCtrl.addEventListener("click", showOptions);
+        closeOptionsCtrl.addEventListener("click", hideOptions);
+      }
+    </script>
+    <script src="pater/pater.js"></script>
+  </body>
+</html>
