@@ -41,11 +41,11 @@ img {
 .btn {
   color: #ffffff;
   padding: 0.8rem;
-  font-size: 14px;
+  font-size: 0.6rem;
   text-transform: uppercase;
   border-radius: 4px;
   font-weight: 400;
-  display: block;
+  display: inline;
   width: 100%;
   cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -55,7 +55,7 @@ img {
 .btn:hover {
   background-color: rgba(255, 255, 255, 0.12);
 }
-
+/* Portfolio cards  */
 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -89,7 +89,7 @@ img {
 }
 
 .card {
-  background-color: white;
+  background-color: black;
   border-radius: 0.25rem;
   box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
   display: flex;
@@ -118,7 +118,7 @@ img {
   margin-bottom: 1.25rem;
   font-weight: 400;
 }
-
+/* Portfolio cards end */
 body {
   --body-text: #f1d51d;
   --body-text-alt: #525252;
@@ -245,28 +245,6 @@ a:focus {
   font-size: 5em;
   justify-self: start;
   color: white !important;
-}
-
-/* Header */
-
-/* Demo links */
-.demos {
-  grid-area: demos;
-  align-self: end;
-  justify-self: end;
-  margin: 0 0 0 auto;
-}
-
-.demo {
-  display: inline-block;
-  margin: 0 0 0 1em;
-  padding: 0 0 0.25em;
-  white-space: nowrap;
-  border-bottom: 2px solid transparent;
-}
-
-.demo--current {
-  border-color: currentColor;
 }
 
 .pieces {
