@@ -1,0 +1,143 @@
+.demo-gallery {
+  --body-text: #000;
+  --body-text-alt: #354dca;
+  --body-bg: #f5f1ed;
+  --link-text: #c8bbac;
+  --link-text-hover: #000;
+  --highlight-text: #354dca;
+  --content-font: "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Content */
+#section2.content {
+  position: relative;
+  height: 100vh;
+  --pieces-height: 95vh;
+}
+
+.gallery#section2 {
+  height: 80vh;
+}
+
+.gallery__item#section2 {
+  opacity: 0;
+  width: 80%;
+  height: 30px;
+}
+
+.gallery__item--current#section2 {
+  opacity: 1;
+  z-index: 100;
+}
+
+.content#section2 .pieces#section2 {
+  height: 500px;
+  width: 500px;
+  top: 20vh;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.piece#section2 {
+  pointer-events: none;
+}
+
+.menu#section2 {
+  z-index: 10;
+  grid-area: 2 / 2 / 3 / 4;
+}
+.description#section2 {
+  text-align: center;
+  padding-left: 20%;
+  padding-right: 20%;
+  font-size: larger;
+}
+.gallery-nav#section2 {
+  grid-area: 6 / 1 / 7 / 7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2em 0 0;
+  position: fixed;
+  top: 90%;
+  top: 90;
+  left: 50%;
+  margin-left: -150px;
+}
+
+.gallery-nav__item#section2 {
+  width: 40px;
+  height: 20px;
+  display: block;
+  margin: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.gallery-nav__item#section2::before,
+.gallery-nav__item#section2::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 6px;
+  margin: -3px;
+  top: 50%;
+  left: 0;
+  opacity: 0.5;
+  background: var(--link-text);
+  pointer-events: none;
+}
+
+.gallery-nav__item#section2::after {
+  opacity: 0;
+  transform: rotate(-60deg);
+  background: var(--body-text-alt);
+}
+
+.gallery-nav__item--current#section2::before,
+.gallery-nav__item--current#section2::after {
+  opacity: 1;
+}
+
+.gallery-nav__item#section2:hover::before,
+.gallery-nav__item--current#section2::before {
+  background: var(--link-text-hover);
+}
+
+@media screen and (max-width: 60em) {
+  .demo-gallery#section2 .pater#section2 {
+    color: #fff !important;
+  }
+}
+
+@media screen and (max-width: 40em) {
+  .content#section2 {
+    margin-bottom: 8em;
+    height: auto;
+    min-height: 0;
+    grid-template-columns: 100%;
+    grid-template-rows: var(--pieces-height) auto auto;
+    --pieces-height: 300px;
+  }
+  .deco-letter#section2 {
+    display: none;
+  }
+  .content#section2 .pieces#section2 {
+    height: 400px;
+    width: 400px;
+    top: 25vh;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+  .description#section2 {
+    text-align: center;
+    position: relative;
+    top: -10vh;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}

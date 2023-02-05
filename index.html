@@ -21,6 +21,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/demo.css" />
     <link rel="stylesheet" type="text/css" href="css/demo-entry.css" />
+      
 
     <script>
       document.documentElement.className = "js";
@@ -64,7 +65,11 @@
       </div>
     </main>
     <section id="section2">
-      <div class="container reveal">
+    <!--
+please make all
+buttons orange,
+including this one!
+  <div class="container reveal">
       
         
         <ul class="cards">
@@ -129,12 +134,180 @@
           <h3>About Me</h3>
           <p>As a junior web developer with a passion for React, I am excited to bring my skills and enthusiasm to projects that utilize this popular framework. With a strong foundation in HTML, CSS, and JavaScript, I am able to create clean and responsive user interfaces that provide a seamless experience for users. I am a quick learner and enjoy solving problems, making me well-suited for a career in web development using React. I am looking forward to continuing to learn and grow in this field, and to contributing to the success of future projects. Currently i spent all of my free time learning to code,but other than that, i love to play guitar, have dog and occasionally photographing :)</p>
         </div>
+      </div>-->
+       <div class="content">
+        <div class="gallery">
+          <div
+            class="gallery__item pieces gallery__item--current"
+            style="background-image: url(img/movies.jpg)"
+          ></div>
+          <div
+            class="gallery__item pieces"
+            style="background-image: url(img/movies.jpg)"
+          ></div>
+          <div
+            class="gallery__item pieces"
+            style="background-image: url(img/movies.jpg)"
+          ></div>
+          <div
+            class="gallery__item pieces"
+            style="background-image: url(img/movies.jpg)"
+          ></div>
+          <div
+            class="gallery__item pieces"
+            style="background-image: url(img/movies.jpg)"
+          ></div>
+        </div>
+        <div class="description">
+          Demo of application for live searching movies with Reac.js.Here, i
+          used lot of core Javascript ES6 and React functionalities and
+          principles. Styled with Tailwind.css. Powered by TMDB API.
+        </div>
+        <nav class="gallery-nav">
+          <span
+            class="gallery-nav__item gallery-nav__item--current"
+            id="next"
+          ></span>
+          <button class="btn card_btn">
+            <a
+              href="https://martincucik.github.io/React-movie-app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Live Demo</a
+            >
+          </button>
+          <button class="btn card_btn">Show code</button>
+          <span
+            class="gallery-nav__item gallery-nav__item--current"
+            id="next"
+          ></span>
+        </nav>
       </div>
+</section>
+<section id="section3">
+  <div class="about-me">
+    <img class="about-me-image" src="https://picsum.photos/500/300/?image=5" alt="My Picture">
+    <div class="about-me-text">
+      <h3>About Me</h3>
+      <p>As a junior web developer with a passion for React, I am excited to bring my skills and enthusiasm to projects that utilize this popular framework. With a strong foundation in HTML, CSS, and JavaScript, I am able to create clean and responsive user interfaces that provide a seamless experience for users. I am a quick learner and enjoy solving problems, making me well-suited for a career in web development using React. I am looking forward to continuing to learn and grow in this field, and to contributing to the success of future projects. Currently i spent all of my free time learning to code,but other than that, i love to play guitar, have dog and occasionally photographing :)</p>
+    </div>
+  </div
 </section>
     <script src="js/imagesloaded.pkgd.min.js"></script>
     <script src="js/anime.min.js"></script>
     <script src="js/main.js"></script>
     <script>
+      let touchstartX = 0
+let touchendX = 0
+    
+function checkDirection() {
+  if (touchendX < touchstartX) alert('swiped left!')
+  if (touchendX > touchstartX) alert('swiped right!')
+}
+
+document.addEventListener('touchstart', e => {
+  touchstartX = e.changedTouches[0].screenX
+})
+
+document.addEventListener('touchend', e => {
+  touchendX = e.changedTouches[0].screenX
+  checkDirection()
+})
+      const getRandomInt = (min, max) =>
+      Math.floor(Math.random() * (max - min + 1)) + min;
+    const galleryItems = Array.from(
+      document.querySelectorAll(".gallery > .gallery__item")
+    );
+    const next = document.getElementById("next");
+    const piecesObjs = [];
+    let current = 0;
+    let isAnimating = false;
+    let animateInTimeout;
+    let fx = 0;
+    let pos = 0;
+    galleryItems.forEach((item) => {
+      piecesObjs.push(
+        new Pieces(item, {
+          pieces: { rows: 6, columns: 3 },
+          delay: [0, 175],
+        })
+      );
+    });
+
+    next.addEventListener("click", (ev) => navigate(ev));
+
+    const navigate = (ev) => {
+      console.log("ev je :" + ev + "pos je" + pos);
+      ev.preventDefault();
+      next.classList.add("disabled");
+      isAnimating = true;
+
+      piecesObjs[current].animate({
+        duration: 800,
+        easing: [0.2, 1, 0.3, 1],
+        delay: (t, i, l) => {
+          return parseInt(t.dataset.column) + parseInt(t.dataset.delay);
+        },
+        translateX: (t, i) => {
+          return pos > current
+            ? anime.random(-1500, -1000) + "px"
+            : anime.random(1000, 1500) + "px";
+        },
+        translateY: (t, i) => {
+          return t.dataset.row < piecesObjs[current].getTotalRows() / 2
+            ? anime.random(50, 100) + "px"
+            : anime.random(-100, -50) + "px";
+        },
+        opacity: {
+          value: 0,
+          easing: "linear",
+        },
+        complete: () => {
+          galleryItems[current].classList.remove("gallery__item--current");
+          current = pos;
+        },
+      });
+      if (pos < 4) {
+        piecesObjs[pos + 1].pieces.forEach((piece) => {
+          piece.style.opacity = 0;
+
+          piece.style.transform = `translateX(${
+            pos > current
+              ? anime.random(1000, 1500)
+              : anime.random(-1500, -1000)
+          }px) translateY(${
+            piece.dataset.row < piecesObjs[pos + 1].getTotalRows() / 2
+              ? anime.random(50, 100)
+              : anime.random(-100, -50)
+          }px)`;
+        });
+      }
+      if (pos < 4) {
+        galleryItems[pos + 1].style.opacity = 1;
+        piecesObjs[pos + 1].animate({
+          duration: 800,
+          easing: fx === 2 ? "easeOutQuint" : "easeInOutQuint",
+          delay: (t, i, l) => {
+            return parseInt(t.dataset.column) + parseInt(t.dataset.delay);
+          },
+          translateX: 0,
+          translateY: 0,
+          rotateZ: () => {
+            return 0;
+          },
+          opacity: 1,
+          complete: () => {
+            galleryItems[pos].classList.add("gallery__item--current");
+          },
+        });
+      }
+      if (pos > 3) {
+        pos = 0;
+      } else pos++;
+      setTimeout(() => {
+        next.classList.remove("disabled");
+      }, 1800);
+    };
       function reveal() {
         var reveals = document.querySelectorAll(".reveal");
 
@@ -233,7 +406,7 @@
           menuEl.classList.remove("page-nav--open");
 
           piecesObj.animate({
-            duration: 1500,
+            duration: 700,
             delay: (t, i) => {
               const elBounds = piecesEl.getBoundingClientRect();
               const x1 = elBounds.left + elBounds.width / 2;
