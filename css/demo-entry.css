@@ -25,7 +25,9 @@
   align-items: center;
   justify-content: center;
 }
-
+.disabled {
+  pointer-events: none;
+}
 .page-nav {
   position: absolute;
   width: 100%;
@@ -350,4 +352,61 @@
     padding-left: 10%;
     padding-right: 10%;
   }
+}
+.menu-container {
+  height: 100vh;
+  overflow-y: scroll;
+  width: 100px;
+  position: fixed;
+  right: 10%;
+  z-index: 99999999;
+
+  top: 46%;
+  right: 2%;
+}
+.menu-container div {
+  width: 100%;
+}
+.menu-container div ul {
+  position: relative;
+  top: 50%;
+  padding: 0;
+  margin: 0;
+}
+.menu-container div ul li {
+  padding: 1em 0;
+  width: 100%;
+  text-align: center;
+  display: block;
+  color: #ece6c2;
+}
+.menu-container div ul li.active,
+.menu-container div ul li:hover {
+  width: 100%;
+  padding: 1em 0;
+  text-align: center;
+  display: block;
+  background: #ece6c4;
+  transition: all 0.2s ease-in;
+}
+.menu-container div ul li.active a,
+.menu-container div ul li:hover a {
+  color: #d96f57;
+}
+.menu-container div ul li a {
+  color: #ece6c2;
+  text-decoration: none;
+  font-family: Arial;
+}
+.menu-container div ul span {
+  text-transform: uppercase;
+  display: block;
+  text-align: center;
+  font-weight: bold;
+}
+.menu-container div ul span.month {
+  font-size: 15px;
+}
+.menu-container div ul span.year {
+  font-size: 12px;
 }

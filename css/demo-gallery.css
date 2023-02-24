@@ -141,3 +141,6 @@
     padding-right: 10%;
   }
 }
+.disabled {
+  opacity: 0;
+}

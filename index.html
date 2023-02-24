@@ -136,6 +136,31 @@ including this one!
         </div>
       </div>-->
        <div class="content">
+        <div class="menu-container">
+          <div>
+            <ul>
+              
+              <li>
+                <a href="#">
+                  <span class="month">HOME</span>
+              
+                </a>
+              </li>
+              <li>
+                <a href="#section2">
+                  <span class="month">MY WORK</span>
+        
+                </a>
+              
+              <li>
+                <a href="#section3">
+                  <span class="month">ABOUT ME</span>
+              
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
         <div class="gallery">
           <div
             class="gallery__item pieces gallery__item--current"
@@ -151,7 +176,7 @@ including this one!
           ></div>
           <div
             class="gallery__item pieces"
-            style="background-image: url(img/movies.jpg)"
+            style="background-image: url(img/movies1.jpg)"
           ></div>
           <div
             class="gallery__item pieces"
@@ -167,7 +192,7 @@ including this one!
           <span
             class="gallery-nav__item gallery-nav__item--current"
             id="next"
-          ></span>
+          >Next </span>
           <button class="btn card_btn">
             <a
               href="https://martincucik.github.io/React-movie-app/"
@@ -269,6 +294,9 @@ Array.from(touchelements).forEach(function(element) {
         complete: () => {
           galleryItems[current].classList.remove("gallery__item--current");
           current = pos;
+          if (pos==4) {
+            pos=0;
+          }
         },
       });
       if (pos < 4) {
