@@ -266,6 +266,7 @@
   padding-left: 20%;
   padding-right: 20%;
   font-size: larger;
+  width: 80vw;
 }
 #section2 .gallery-nav {
   grid-area: 6 / 1 / 7 / 7;

@@ -290,7 +290,41 @@ a:focus {
   font-size: xx-large;
 }
 .about-me-text p {
-  font-size: xx-large;
+  font-size: 1.5em;
+}
+.fadeOutRight {
+  animation-name: fadeOutRight;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+}
+
+.fadeInLeft {
+  animation-name: fadeInLeft;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+}
+
+/* Define the keyframe animations */
+@keyframes fadeOutRight {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
 }
 
 /* Make the flex container responsive */
