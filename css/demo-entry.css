@@ -349,7 +349,7 @@
   #section2 .description {
     text-align: center;
     position: relative;
-    top: -10vh;
+    top: 0vh;
     padding-left: 10%;
     padding-right: 10%;
   }
