@@ -184,14 +184,12 @@ including this one!
           ></div>
         </div>
         <div id="myDiv" class="description">
-         Application for live searching movies with React.js.Here, i
-          used lot of core Javascript ES6 and React functionalities and
-          principles. Styled with Tailwind.css. Powered by TMDB API.
+       
         </div>
         <nav class="gallery-nav">
           <span
             class="gallery-nav__item gallery-nav__item--current"
-            id="next"
+            
           >Next </span>
           <button class="btn card_btn">
             <a
@@ -203,9 +201,9 @@ including this one!
           </button>
           <button class="btn card_btn">Show code</button>
           <span
-            class="gallery-nav__item gallery-nav__item--current"
-            id="next"
-          ></span>
+          class="gallery-nav__item gallery-nav__item--current"
+          id="next"
+        >Next </span>
         </nav>
       </div>
 </section>
@@ -223,15 +221,17 @@ including this one!
     <script src="js/main.js"></script>
     <script>
       const textValues = ["Application for live searching movies with <u>React.js</u>.Here, i used lot of core Javascript ES6 and React functionalities and principles. Styled with <u>Tailwind.css</u>. Powered by <u>TMDB API</u>.Built by react hooks.Fetching from api, custom pagination.","Application for live searching movies with <u>React.js</u>.Here, i used lot of core Javascript ES6 and React functionalities and principles. Styled with <u>Tailwind.css</u>. Powered by <u>TMDB API</u>.Built by react hooks.Fetching from api, custom pagination.","Application for live searching movies with <u>React.js</u>.Here, i used lot of core Javascript ES6 and React functionalities and principles. Styled with <u>Tailwind.css</u>. Powered by <u>TMDB API</u>.Built by react hooks.Fetching from api, custom pagination."];
+      
+
       const next = document.getElementById("next");
       // Get a reference to the div element
       const myDiv = document.getElementById("myDiv");
 
       // Set the initial text content of the div element to the first value in the array
       let currentIndex = 0;
-      myDiv.textContent = textValues[currentIndex];
+      myDiv.innerHTML = textValues[currentIndex];
       console.log(myDiv.textContent);
-
+      console.log(currentIndex);
       // Add a click event listener to the div element
       next.addEventListener("click", () => {
         // Set the class name for the fade out animation based on the current index
@@ -256,7 +256,7 @@ including this one!
 
           // Increment the current index by 1, wrapping around to 0 if necessary
           currentIndex = (currentIndex + 1) % textValues.length;
-
+          myDiv.innerHTML = textValues[currentIndex];
           // Set a timeout to remove the fade in class after the animation completes
           setTimeout(() => {
             myDiv.classList.remove(fadeInClass);
