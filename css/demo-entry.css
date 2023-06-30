@@ -287,6 +287,7 @@
   margin: 10px;
   cursor: pointer;
   position: relative;
+  z-index: 9999999999;
 }
 
 #section2 .gallery-nav__item ::before,
@@ -327,7 +328,7 @@
 
 @media screen and (max-width: 40em) {
   #section2 .content {
-    margin-bottom: 8em;
+    margin-bottom: 0em;
     height: auto;
     min-height: 0;
     grid-template-columns: 100%;
@@ -336,6 +337,9 @@
   }
   #section2 .deco-letter {
     display: none;
+  }
+  #section2 .gallery {
+    height: 60vh;
   }
   #section2 .content .pieces {
     height: 270px;
