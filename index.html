@@ -164,24 +164,27 @@ including this one!
         <div class="gallery">
           <div
             class="gallery__item pieces gallery__item--current"
-            style="background-image: url(img/movies.webp)"
+            style="background-image: url(img/movies11.jpg)"
           ></div>
+          <div
+            class="gallery__item pieces"
+            style="background-image: url(img/movies22.jpg)"
+          ></div>
+          <div
+            class="gallery__item pieces"
+            style="background-image: url(img/movies33.jpg)"
+          ></div>
+          
+          <div
+            class="gallery__item pieces"
+            style="background-image: url(img/movies44.jpg)"
+          ></div>
+           <!--
           <div
             class="gallery__item pieces"
             style="background-image: url(img/movies.webp)"
           ></div>
-          <div
-            class="gallery__item pieces"
-            style="background-image: url(img/movies.webp)"
-          ></div>
-          <div
-            class="gallery__item pieces"
-            style="background-image: url(img/movies1.webp)"
-          ></div>
-          <div
-            class="gallery__item pieces"
-            style="background-image: url(img/movies.webp)"
-          ></div>
+           </div>-->
         </div>
         <div id="myDiv" class="description">
        
@@ -220,6 +223,7 @@ including this one!
     <script src="js/anime.min.js"></script>
     <script src="js/main.js"></script>
     <script>
+      
       const textValues = ["Application for live searching movies with <u>React.js</u>.Here, i used lot of core Javascript ES6 and React functionalities and principles. Styled with <u>Tailwind.css</u>. Powered by <u>TMDB API</u>.Built by react hooks.Fetching from api, custom pagination.","Application for live searching movies with <u>React.js</u>.Here, i used lot of core Javascript ES6 and React functionalities and principles. Styled with <u>Tailwind.css</u>. Powered by <u>TMDB API</u>.Built by react hooks.Fetching from api, custom pagination.","Application for live searching movies with <u>React.js</u>.Here, i used lot of core Javascript ES6 and React functionalities and principles. Styled with <u>Tailwind.css</u>. Powered by <u>TMDB API</u>.Built by react hooks.Fetching from api, custom pagination."];
       
 
@@ -231,7 +235,7 @@ including this one!
       let currentIndex = 0;
       myDiv.innerHTML = textValues[currentIndex];
       console.log(myDiv.textContent);
-      console.log(currentIndex);
+     
       // Add a click event listener to the div element
       next.addEventListener("click", () => {
         // Set the class name for the fade out animation based on the current index
@@ -262,6 +266,7 @@ including this one!
             myDiv.classList.remove(fadeInClass);
           }, 500);
         }, 500);
+        console.log(currentIndex);
       });
       let touchstartX = 0
 let touchendX = 0
@@ -295,6 +300,7 @@ Array.from(touchelements).forEach(function(element) {
     let animateInTimeout;
     let fx = 0;
     let pos = 0;
+    console.log("pos je" + pos + "current je" + current);
     galleryItems.forEach((item) => {
       piecesObjs.push(
         new Pieces(item, {
@@ -303,11 +309,12 @@ Array.from(touchelements).forEach(function(element) {
         })
       );
     });
-
+    console.log(galleryItems);
+console.log(piecesObjs);
     next.addEventListener("click", (ev) => navigate(ev));
 
     const navigate = (ev) => {
-      console.log("ev je :" + ev + "pos je" + pos);
+    
       ev.preventDefault();
       next.classList.add("disabled");
       isAnimating = true;
@@ -337,10 +344,11 @@ Array.from(touchelements).forEach(function(element) {
           current = pos;
           if (pos==4) {
             pos=0;
+          
           }
         },
       });
-      if (pos < 4) {
+      if (pos < 3) {
         piecesObjs[pos + 1].pieces.forEach((piece) => {
           piece.style.opacity = 0;
 
@@ -355,7 +363,7 @@ Array.from(touchelements).forEach(function(element) {
           }px)`;
         });
       }
-      if (pos < 4) {
+      if (pos < 3) {
         galleryItems[pos + 1].style.opacity = 1;
         piecesObjs[pos + 1].animate({
           duration: 800,
@@ -373,13 +381,46 @@ Array.from(touchelements).forEach(function(element) {
             galleryItems[pos].classList.add("gallery__item--current");
           },
         });
-      }
-      if (pos > 3) {
-        pos = 0;
-      } else pos++;
+      } if (pos == 3) {
+        console.log("teraz je 3");
+        piecesObjs[0].pieces.forEach((piece) => {
+          piece.style.opacity = 0;
+
+          piece.style.transform = `translateX(${
+            pos > current
+              ? anime.random(1000, 1500)
+              : anime.random(-1500, -1000)
+          }px) translateY(${
+            piece.dataset.row < piecesObjs[0].getTotalRows() / 2
+              ? anime.random(50, 100)
+              : anime.random(-100, -50)
+          }px)`;
+        });
+        galleryItems[0].style.opacity = 1;
+        piecesObjs[0].animate({
+          duration: 800,
+          easing: fx === 2 ? "easeOutQuint" : "easeInOutQuint",
+          delay: (t, i, l) => {
+            return parseInt(t.dataset.column) + parseInt(t.dataset.delay);
+          },
+          translateX: 0,
+          translateY: 0,
+          rotateZ: () => {
+            return 0;
+          },
+          opacity: 1,
+          complete: () => {
+            galleryItems[0].classList.add("gallery__item--current");
+          },
+        });
+    }
+      if (pos > 2) {{
+        pos = 0;current=0;}
+      } else {pos++;current++;}
       setTimeout(() => {
         next.classList.remove("disabled");
       }, 1800);
+      console.log("ev je :" + ev + "pos je" + pos + "current je" + current);
     };
       function reveal() {
         var reveals = document.querySelectorAll(".reveal");
