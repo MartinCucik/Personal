@@ -372,6 +372,27 @@
 .menu-container div {
   width: 100%;
 }
+.arrow {
+  border-color: transparent;
+  border-style: solid;
+  border-width: 0 8em;
+  display: block;
+  height: 0;
+  margin: 10em auto;
+  opacity: 0.4;
+  text-indent: -9999px;
+  transform-origin: 50% 50%;
+  width: 0;
+}
+.up {
+  -webkit-animation: uparrow 0.6s infinite alternate ease-in-out;
+  border-bottom: 4em solid #00b6f1;
+}
+.down {
+  -webkit-animation: downarrow 0.6s infinite alternate ease-in-out;
+  border-top: 4em solid #00b6f1;
+}
+
 .menu-container div ul {
   position: relative;
   top: 50%;
