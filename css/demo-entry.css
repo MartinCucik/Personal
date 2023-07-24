@@ -7,13 +7,13 @@
   --content-font: "Cormorant Garamond", sans-serif;
 }
 #section1 {
-  height: 100vh;
+  height: 100%;
 }
 #section2 {
-  height: 100vh;
+  height: 100%;
 }
 #section3 {
-  height: 100vh;
+  height: 100%;
 }
 .content {
   --pieces-height: 90vh;
@@ -224,7 +224,7 @@
 
 #section2 .content {
   position: relative;
-  height: 100vh;
+  height: 100%;
   --pieces-height: 95vh;
 }
 
