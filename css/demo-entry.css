@@ -5,6 +5,7 @@
   --link-text: #c7c5c5;
   --link-text-hover: #fff;
   --content-font: "Cormorant Garamond", sans-serif;
+  height: 100%;
 }
 #section1 {
   height: 100%;
