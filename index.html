@@ -164,15 +164,15 @@ including this one!
         <div class="gallery">
           <div
             class="gallery__item pieces gallery__item--current"
-            style="background-image: url(img/movies1111.jpg)"
+            style="background-image: url(img/movies11.jpg)"
           ></div>
           <div
             class="gallery__item pieces"
-            style="background-image: url(img/movies555.jpg)"
+            style="background-image: url(img/movies22.jpg)"
           ></div>
           <div
             class="gallery__item pieces"
-            style="background-image: url(img/movies555.jpg)"
+            style="background-image: url(img/movies33.jpg)"
           ></div>
           
           <div
@@ -191,7 +191,7 @@ including this one!
         </div>
         <nav class="gallery-nav">
           <span
-            class="gallery-nav__item gallery-nav__item--current"
+            class="gallery-nav__item gallery-nav__item--current" id="previous"
             
           >Next </span>
           <button class="btn card_btn">
@@ -225,10 +225,11 @@ including this one!
     <script src="js/main.js"></script>
     <script>
       
-      const textValues = ["Used with vanilaJS and anime.js library. Each picture is sliced to array of pieces and then moved. Based on codrops article. It has few years so nothing technologically new,but work with anime.js gave me lot of experiences(and patience)","Application for live searching movies with <u>React.js</u>.Here, i used lot of core Javascript ES6 and React functionalities and principles. Styled with <u>Tailwind.css</u>. Powered by <u>TMDB API</u>.Built by react hooks.Fetching from api, custom pagination.","Simple boring react.js weather app:).","Simple html/css website about my hobby,guitars"];
+      const textValues = ["1:Used with vanilaJS and anime.js library. Each picture is sliced to array of pieces and then moved. Based on codrops article. It has few years so nothing technologically new,but work with anime.js gave me lot of experiences(and patience)","2:Application for live searching movies with <u>React.js</u>.Here, i used lot of core Javascript ES6 and React functionalities and principles. Styled with <u>Tailwind.css</u>. Powered by <u>TMDB API</u>.Built by react hooks.Fetching from api, custom pagination.","Simple boring react.js weather app:).","Simple html/css website about my hobby,guitars"];
       
 
       const next = document.getElementById("next");
+      const previous= document.getElementById("previous")
       // Get a reference to the div element
       const myDiv = document.getElementById("myDiv");
 
@@ -269,9 +270,39 @@ including this one!
         }, 500);
         console.log(currentIndex);
       });
-      let touchstartX = 0
-let touchendX = 0
-    
+
+      previous.addEventListener("click", () => {
+        // Set the class name for the fade out animation based on the current index
+        const fadeOutClass = "fadeOutLeft";
+
+        // Add the fade out class to the div element
+        myDiv.classList.add(fadeOutClass);
+
+        // Set a timeout to update the text content and add the fade in class after the animation completes
+        setTimeout(() => {
+          // Remove the fade out class from the div element
+          myDiv.classList.remove(fadeOutClass);
+
+          // Update the text content of the div element to the next value in the array
+          myDiv.innerHTML = textValues[currentIndex];
+
+          // Set the class name for the fade in animation based on the current index
+          const fadeInClass = "fadeInRight";
+
+          // Add the fade in class to the div element
+          myDiv.classList.add(fadeInClass);
+
+          // Increment the current index by 1, wrapping around to 0 if necessary
+          currentIndex = (currentIndex - 1) % textValues.length;
+          myDiv.innerHTML = textValues[currentIndex];
+          // Set a timeout to remove the fade in class after the animation completes
+          setTimeout(() => {
+            myDiv.classList.remove(fadeInClass);
+          }, 500);
+        }, 500);
+        console.log(currentIndex);
+      });
+
 function checkDirection() {
   if (touchendX < touchstartX) alert('swiped left!')
   if (touchendX > touchstartX) alert('swiped right!')
@@ -313,7 +344,7 @@ Array.from(touchelements).forEach(function(element) {
     console.log(galleryItems);
 console.log(piecesObjs);
     next.addEventListener("click", (ev) => navigate(ev));
-
+    previous.addEventListener("click", (ev) => navigate2(ev));
     const navigate = (ev) => {
     
       ev.preventDefault();
@@ -343,12 +374,12 @@ console.log(piecesObjs);
         complete: () => {
           galleryItems[current].classList.remove("gallery__item--current");
           current = pos;
-          if (pos==4) {
-            pos=0;
-          
-          }
+        
         },
       });
+      if (pos ==0) {
+        console.log("nulaa");
+      }
       if (pos < 3) {
         piecesObjs[pos + 1].pieces.forEach((piece) => {
           piece.style.opacity = 0;
@@ -423,6 +454,144 @@ console.log(piecesObjs);
       }, 1800);
       console.log("ev je :" + ev + "pos je" + pos + "current je" + current);
     };
+
+    const navigate2 = (ev) => {
+      console.log("kliknuty previous");
+    
+      ev.preventDefault();
+      previous.classList.add("disabled");
+      isAnimating = true;
+
+      piecesObjs[current].animate({
+        duration: 800,
+        easing: [0.2, 1, 0.3, 1],
+        delay: (t, i, l) => {
+          return parseInt(t.dataset.column) + parseInt(t.dataset.delay);
+        },
+        translateX: (t, i) => {
+          return anime.random(-1500, -1000) + "px"
+           
+        },
+        translateY: (t, i) => {
+          return t.dataset.row < piecesObjs[current].getTotalRows() / 2
+            ? anime.random(50, 100) + "px"
+            : anime.random(-100, -50) + "px";
+        },  
+        opacity: {
+          value: 0,
+          easing: "linear",
+        },
+        complete: () => {
+          galleryItems[current].classList.remove("gallery__item--current");
+          current = pos;
+          
+        },
+      });
+      if (pos ==0) {
+        console.log("nulaa z druheho")
+        
+          piecesObjs[3].pieces.forEach((piece) => {
+            piece.style.opacity = 0;
+  
+            piece.style.transform = `translateX(${
+            
+               anime.random(+1500, +1000)
+            }px) translateY(${
+              piece.dataset.row < piecesObjs[3].getTotalRows() / 2
+                ? anime.random(50, 100)
+                : anime.random(-100, -50)
+            }px)`;
+          });
+          galleryItems[3].style.opacity = 1;
+          piecesObjs[3].animate({
+            duration: 800,
+            easing: fx === 2 ? "easeOutQuint" : "easeInOutQuint",
+            delay: (t, i, l) => {
+              return parseInt(t.dataset.column) + parseInt(t.dataset.delay);
+            },
+            translateX: 0,
+            translateY: 0,
+            rotateZ: () => {
+              return 0;
+            },
+            opacity: 1,
+            complete: () => {
+              galleryItems[pos].classList.add("gallery__item--current");
+            },
+          });
+          pos=4;
+          current=4;
+      }
+      if (pos != 0) {
+        console.log("druhe if aktivaonie aj ked nemalo")
+        piecesObjs[pos - 1].pieces.forEach((piece) => {
+          piece.style.opacity = 0;
+
+          piece.style.transform = `translateX(${
+          
+             anime.random(+1500, +1000)
+          }px) translateY(${
+            piece.dataset.row < piecesObjs[pos - 1].getTotalRows() / 2
+              ? anime.random(50, 100)
+              : anime.random(-100, -50)
+          }px)`;
+        });
+        galleryItems[pos - 1].style.opacity = 1;
+        piecesObjs[pos - 1].animate({
+          duration: 800,
+          easing: fx === 2 ? "easeOutQuint" : "easeInOutQuint",
+          delay: (t, i, l) => {
+            return parseInt(t.dataset.column) + parseInt(t.dataset.delay);
+          },
+          translateX: 0,
+          translateY: 0,
+          rotateZ: () => {
+            return 0;
+          },
+          opacity: 1,
+          complete: () => {
+            galleryItems[pos].classList.add("gallery__item--current");
+          },
+        });
+       pos=pos-1;current=current-1;
+      }/* if (pos == 3) {
+        console.log("teraz je 33");
+        piecesObjs[0].pieces.forEach((piece) => {
+          piece.style.opacity = 0;
+
+          piece.style.transform = `translateX(${
+                     anime.random(+1500, +1000)
+          }px) translateY(${
+            piece.dataset.row < piecesObjs[0].getTotalRows() / 2
+              ? anime.random(50, 100)
+              : anime.random(-100, -50)
+          }px)`;
+        });
+        galleryItems[0].style.opacity = 1;
+        piecesObjs[0].animate({
+          duration: 800,
+          easing: fx === 2 ? "easeOutQuint" : "easeInOutQuint",
+          delay: (t, i, l) => {
+            return parseInt(t.dataset.column) + parseInt(t.dataset.delay);
+          },
+          translateX: 0,
+          translateY: 0,
+          rotateZ: () => {
+            return 0;
+          },
+          opacity: 1,
+          complete: () => {
+            galleryItems[0].classList.add("gallery__item--current");
+          },
+        });
+    }*/
+   
+  
+      setTimeout(() => {
+       previous.classList.remove("disabled");
+      }, 1800);
+      console.log("ev je :" + ev + "pos je" + pos + "current je" + current);
+   }  
       function reveal() {
         var reveals = document.querySelectorAll(".reveal");
 

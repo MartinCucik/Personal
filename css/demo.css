@@ -327,6 +327,41 @@ a:focus {
   }
 }
 
+.fadeOutLeft {
+  animation-name: fadeOutLeft;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+}
+
+.fadeInRight {
+  animation-name: fadeInRight;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+}
+
+/* Define the keyframe animations */
+@keyframes fadeOutLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(+100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
 /* Make the flex container responsive */
 @media (max-width: 600px) {
   .about-me {
