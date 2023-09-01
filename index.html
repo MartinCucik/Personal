@@ -65,76 +65,7 @@
       </div>
     </main>
     <section id="section2">
-    <!--
-please make all
-buttons orange,
-including this one!
-  <div class="container reveal">
-      
-        
-        <ul class="cards">
-          <li class="cards_item">
-            <div class="card">
-              <div class="card_image"><img src="img/movies.jpg"></div>
-              <div class="card_content">
-                <h2 class="card_title">React movie search app</h2>
-                <p class="card_text">Demo of application for live searching movies with <u>Reac.js</u>.Here, i used lot of core <u>Javascript ES6</u> and React functionalities and principles.
-                  Styled with <u>Tailwind.css</u>. Powered by <u>TMDB API</u>. 
-                </p>
-              <div>
-                <button class="btn card_btn"><a href="https://martincucik.github.io/React-movie-app/" target="_blank"  rel="noopener noreferrer">Live Demo</a></button>
-                <button class="btn card_btn">Show code</button>
-              </div>
-              </div>
-            </div>
-          </li>
-          <li class="cards_item">
-            <div class="card">
-              <div class="card_image"><img src="img/personal.jpg"></div>
-              <div class="card_content">
-                <h2 class="card_title">Personal webiste</h2>
-                <p class="card_text">This webiste is inspired by old article on Codrops webiste. Its using <u>Anime.js</u> library to add amazing(i think) animations to background images,like you can see on my photo:)</p>
-                <button class="btn card_btn"><a href="https://martincucik.github.io/Personal/" target="_blank"  rel="noopener noreferrer">Live Demo</a></button>
-                <button class="btn card_btn">Show code</button>
-              </div>
-            </div>
-          </li>
-          
-          <li class="cards_item">
-            <div class="card">
-              <div class="card_image"><img src="img/stratocaster.jpg"></div>
-              <div class="card_content">
-                <h2 class="card_title">Why You should choose Fender</h2>
-                <p class="card_text">Little website about my hobby,guitars :). Its writen only with pure HTML and CSS and  using parallax scrolling. Just for fun, it was part of Freecodecamp program for learning web development .</p>
-                <button class="btn card_btn"><a href="https://martincucik.github.io/Fender2/" target="_blank"  rel="noopener noreferrer">Live Demo</a></button>
-                <button class="btn card_btn">Show code</button>
-              </div>
-            </div>
-          </li>
-          <li class="cards_item">
-            <div class="card">
-              <div class="card_image"><img src="img/weather.jpg"></div>
-              <div class="card_content">
-                <h2 class="card_title">React Weather App</h2>
-                <p class="card_text">Demo of application for live weather informations. Used with <u>React.js</u> and <u>Javascript ES6</u>. Styled with <u>Tailwind.css</u>. Powered by <u>Openweather API</u>. </p>
-                <button class="btn card_btn">Live Demo</button>
-                <button class="btn card_btn">Show code</button>
-              </div>
-            </div>
-          </li>
-        </ul>
-      
-      
-      </div>
-    </section>
-    <section id="section3">
-      <div class="about-me">
-        <img class="about-me-image" src="https://picsum.photos/500/300/?image=5" alt="My Picture">
-        <div class="about-me-text">
-          <h3>About Me</h3>
-          <p>As a junior web developer with a passion for React, I am excited to bring my skills and enthusiasm to projects that utilize this popular framework. With a strong foundation in HTML, CSS, and JavaScript, I am able to create clean and responsive user interfaces that provide a seamless experience for users. I am a quick learner and enjoy solving problems, making me well-suited for a career in web development using React. I am looking forward to continuing to learn and grow in this field, and to contributing to the success of future projects. Currently i spent all of my free time learning to code,but other than that, i love to play guitar, have dog and occasionally photographing :)</p>
-        </div>
-      </div>-->
+ 
        <div class="content">
         <div class="menu-container">
           <div>
@@ -164,11 +95,11 @@ including this one!
         <div class="gallery">
           <div
             class="gallery__item pieces gallery__item--current"
-            style="background-image: url(img/movies11.jpg)"
+            style="background-image: url(img/movies1111.jpg)"
           ></div>
           <div
             class="gallery__item pieces"
-            style="background-image: url(img/movies22.jpg)"
+            style="background-image: url(img/moviesss.jpg)"
           ></div>
           <div
             class="gallery__item pieces"
@@ -225,20 +156,19 @@ including this one!
     <script src="js/main.js"></script>
     <script>
       
-      const textValues = ["1:Used with vanilaJS and anime.js library. Each picture is sliced to array of pieces and then moved. Based on codrops article. It has few years so nothing technologically new,but work with anime.js gave me lot of experiences(and patience)","2:Application for live searching movies with <u>React.js</u>.Here, i used lot of core Javascript ES6 and React functionalities and principles. Styled with <u>Tailwind.css</u>. Powered by <u>TMDB API</u>.Built by react hooks.Fetching from api, custom pagination.","Simple boring react.js weather app:).","Simple html/css website about my hobby,guitars"];
-      
-
+      // array with description of gallery items
+      const textValues = ["1:Used with vanilaJS and anime.js library. Each picture is sliced to array of pieces and then moved. Based on codrops article. It has few years so nothing technologically new,but work with anime.js gave me lot of experiences(and patience)","Fullstack application for live searching movies with <u>React.js</u> and <u>Firestore Database</u>.Here, i used lot of core Javascript ES6 and React functionalities and principles. Styled with <u>Tailwind.css</u>. Powered by <u>TMDB API</u>.Built by react hooks.Fetching from api, custom pagination.","Simple boring react.js weather app:).","Simple html/css website about my hobby,guitars"];
       const next = document.getElementById("next");
       const previous= document.getElementById("previous")
       // Get a reference to the div element
       const myDiv = document.getElementById("myDiv");
 
-      // Set the initial text content of the div element to the first value in the array
+      // Initial text content of first gallery item
       let currentIndex = 0;
       myDiv.innerHTML = textValues[currentIndex];
       console.log(myDiv.textContent);
      
-      // Add a click event listener to the div element
+      // Function for changing description text on gallery items and animating them
       next.addEventListener("click", () => {
         // Set the class name for the fade out animation based on the current index
         const fadeOutClass = "fadeOutRight";
@@ -292,8 +222,9 @@ including this one!
           // Add the fade in class to the div element
           myDiv.classList.add(fadeInClass);
 
-          // Increment the current index by 1, wrapping around to 0 if necessary
-          currentIndex = (currentIndex - 1) % textValues.length;
+          // IF currentindex == 0, assign 3 to go to the end
+          
+          currentIndex = (currentIndex==0) ? 3 : currentIndex - 1;
           myDiv.innerHTML = textValues[currentIndex];
           // Set a timeout to remove the fade in class after the animation completes
           setTimeout(() => {
@@ -322,7 +253,8 @@ Array.from(touchelements).forEach(function(element) {
 
       const getRandomInt = (min, max) =>
       Math.floor(Math.random() * (max - min + 1)) + min;
-    const galleryItems = Array.from(
+    
+      const galleryItems = Array.from(
       document.querySelectorAll(".gallery > .gallery__item")
     );
  
@@ -451,7 +383,7 @@ console.log(piecesObjs);
       } else {pos++;current++;}
       setTimeout(() => {
         next.classList.remove("disabled");
-      }, 1800);
+      }, 1300);
       console.log("ev je :" + ev + "pos je" + pos + "current je" + current);
     };
 
